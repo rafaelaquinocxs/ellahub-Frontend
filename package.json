@@ -1,7 +1,8 @@
 {
   "name": "ella-hub-frontend",
   "version": "1.0.0",
-  "private": true,\n  "packageManager": "npm@10.8.1",
+  "private": true,
+  "packageManager": "npm@10.8.1",
   "scripts": {
     "dev": "cd ella-hub-frontend && npm run dev",
     "build": "cd ella-hub-frontend && npm run build",
