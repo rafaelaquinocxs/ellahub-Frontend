@@ -1,5 +1,5 @@
 {
-  "installCommand": "cd ella-hub-frontend && npm install",
+  "installCommand": "cd ella-hub-frontend && npm install --force",
   "buildCommand": "cd ella-hub-frontend && npm run build",
   "outputDirectory": "ella-hub-frontend/dist",
   "framework": null
