@@ -80,7 +80,7 @@ const LandingPage = () => {
                     {item.icon}
                   </div>
                   <CardTitle className="text-xl font-semibold mb-2">
-                    {index + 1} ⃣ {item.title}
+                    {index + 1}. {item.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
