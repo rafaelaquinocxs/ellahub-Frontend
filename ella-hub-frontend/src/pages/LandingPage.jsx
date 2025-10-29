@@ -60,7 +60,7 @@ const LandingPage = () => {
           <div className="md:w-1/2 flex justify-center">
             {/* Imagem Placeholder - Usando a imagem fornecida */}
             <img 
-              src="/src/assets/ella-hero.png" // Será necessário mover/copiar a imagem para /src/assets
+              src="/ella-hero.png" // Será necessário mover/copiar a imagem para /src/assets
               alt="Ella, sua mentora virtual" 
               className="w-full max-w-sm rounded-lg shadow-2xl"
             />
@@ -111,7 +111,7 @@ const LandingPage = () => {
             <div className="md:w-1/2 flex justify-center">
               {/* Imagem Placeholder */}
               <img 
-                src="/src/assets/ella-chart.png" // Será necessário mover/copiar a imagem para /src/assets
+                src="/ella-chart.png" // Será necessário mover/copiar a imagem para /src/assets
                 alt="Gráfico de crescimento" 
                 className="w-full max-w-sm rounded-lg shadow-2xl"
               />
