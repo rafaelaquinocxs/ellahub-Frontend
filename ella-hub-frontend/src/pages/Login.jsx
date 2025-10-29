@@ -25,11 +25,15 @@ const Login = () => {
     setLoading(true);
     setError('');
 
+    // Adicionado um pequeno delay para melhor UX
+    await new Promise(resolve => setTimeout(resolve, 500)); 
+
     const result = await login(token.trim());
     
     if (result.success) {
       navigate('/painel');
     } else {
+      // O erro 'Token inválido' virá daqui
       setError(result.message || 'Token inválido');
     }
     
@@ -118,4 +122,3 @@ const Login = () => {
 };
 
 export default Login;
-
