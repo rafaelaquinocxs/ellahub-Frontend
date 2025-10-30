@@ -30,7 +30,7 @@ const lpContent = {
 const LandingPage = () => {
   const navigate = useNavigate();
 
-  // Função de rolagem para o formulário (simulado)
+  // Função de rolagem para o formulário (simulado) - FORÇANDO REDEPLOY PARA CORRIGIR FLUXO DE LEAD
   const scrollToForm = () => {
     // Redireciona para a página de captura de leads
     navigate('/lead-capture');
