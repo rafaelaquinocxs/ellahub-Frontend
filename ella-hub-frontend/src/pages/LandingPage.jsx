@@ -32,8 +32,8 @@ const LandingPage = () => {
 
   // Função de rolagem para o formulário (simulado)
   const scrollToForm = () => {
-    // Redireciona para a página de login, que agora será o formulário de diagnóstico
-    navigate('/login');
+    // Redireciona para a página de captura de leads
+    navigate('/lead-capture');
   };
 
   return (
