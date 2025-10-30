@@ -265,8 +265,10 @@ const Dashboard = () => {
                       ))}
                     </ul>
                   </CardContent>
-                </Ca372	              </div>
-373	            ) : (           <Card>
+                </Card>
+              </div>
+            ) : (
+              <Card>
                 <CardContent className="p-8 text-center">
                   <BarChart3 className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -283,9 +285,9 @@ const Dashboard = () => {
                     {gerandoDiagnostico ? 'Gerando diagnóstico...' : 'Fazer Diagnóstico'}
                   </Button>
                 </CardContent>
-                </Card>
-              )}
-            </TabsContent>
+              </Card>
+            )}
+          </TabsContent>
 
           {/* Plano de Ação Tab */}
           <TabsContent value="plano" className="space-y-6">
