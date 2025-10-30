@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import MarkdownRenderer from './MarkdownRenderer';
 import { Send, Loader2, Bot, User } from 'lucide-react';
 import ApiService from '../services/api';
 
@@ -156,7 +157,7 @@ const ChatComponent = () => {
                         : 'bg-gray-100 text-gray-900'
                     }`}
                   >
-                    <p className="text-sm">{mensagem.conteudo}</p>
+                    <MarkdownRenderer>{mensagem.conteudo}</MarkdownRenderer>
                     <p
                       className={`text-xs mt-1 ${
                         mensagem.tipo === 'usuario' ? 'text-purple-200' : 'text-gray-500'
