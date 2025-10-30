@@ -179,7 +179,7 @@ const Dashboard = () => {
 
           {/* Diagnóstico Tab */}
           <TabsContent value="diagnostico" className="space-y-6">
-            {diagnostico?.resultado?.score ? (
+            {diagnostico?.resultado?.pontosFortesIdentificados?.length > 0 || diagnostico?.resultado?.recomendacoes?.length > 0 ? (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <Card>
                   <CardHeader>
