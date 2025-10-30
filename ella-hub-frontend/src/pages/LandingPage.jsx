@@ -52,7 +52,7 @@ const LandingPage = () => {
             <Button 
               size="lg" 
               className="bg-pink-400 hover:bg-pink-500 text-white text-lg font-bold transition duration-300"
-              onClick={scrollToForm}
+              onClick={() => navigate('/lead-capture')}
             >
               Quero fazer meu diagnóstico <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
