@@ -263,62 +263,82 @@ const Dashboard = () => {
 
           {/* Plano de Ação Tab */}
           <TabsContent value="plano" className="space-y-6">
-            {diagnostico?.resultado?.planoAcao ? (
+            {diagnostico?.resultado?.planoAcao && (
+              diagnostico.resultado.planoAcao.curto_prazo?.length > 0 ||
+              diagnostico.resultado.planoAcao.medio_prazo?.length > 0 ||
+              diagnostico.resultado.planoAcao.longo_prazo?.length > 0
+            ) ? (
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <Card>
+                                  {/* Curto Prazo */}
+                <Card className="shadow-lg border-t-4 border-green-500">
                   <CardHeader>
-                    <CardTitle className="text-green-600">Curto Prazo</CardTitle>
-                    <CardDescription>Próximas 4 semanas</CardDescription>
+                    <CardTitle className="text-green-600 flex items-center">
+                      <Clock className="h-5 w-5 mr-2" />
+                      Curto Prazo
+                    </CardTitle>
+                    <CardDescription>Próximas 4 semanas - Foco na Ação Imediata</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-3">
+                    <ul className="space-y-4">
                       {diagnostico.resultado.planoAcao.curto_prazo?.map((acao, index) => (
-                        <li key={index} className="flex items-start">
-                          <div className="bg-green-100 rounded-full p-1 mr-3 mt-1">
-                            <CheckCircle className="h-3 w-3 text-green-600" />
-                          </div>
-                          <span className="text-sm text-gray-700">{acao}</span>
+                        <li key={index} className="flex items-start p-3 bg-green-50 rounded-lg border border-green-200">
+                          <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 mr-3 flex-shrink-0" />
+                          <span className="text-sm font-medium text-gray-800">{acao}</span>
                         </li>
                       ))}
                     </ul>
+                    {diagnostico.resultado.planoAcao.curto_prazo?.length === 0 && (
+                      <p className="text-sm text-gray-500 italic">Nenhuma ação de curto prazo definida.</p>
+                    )}
                   </CardContent>
                 </Card>
 
-                <Card>
+                {/* Médio Prazo */}
+                <Card className="shadow-lg border-t-4 border-blue-500">
                   <CardHeader>
-                    <CardTitle className="text-blue-600">Médio Prazo</CardTitle>
-                    <CardDescription>Próximos 3 meses</CardDescription>
+                    <CardTitle className="text-blue-600 flex items-center">
+                      <Target className="h-5 w-5 mr-2" />
+                      Médio Prazo
+                    </CardTitle>
+                    <CardDescription>Próximos 3 meses - Foco no Crescimento</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-3">
+                    <ul className="space-y-4">
                       {diagnostico.resultado.planoAcao.medio_prazo?.map((acao, index) => (
-                        <li key={index} className="flex items-start">
-                          <div className="bg-blue-100 rounded-full p-1 mr-3 mt-1">
-                            <Clock className="h-3 w-3 text-blue-600" />
-                          </div>
-                          <span className="text-sm text-gray-700">{acao}</span>
+                        <li key={index} className="flex items-start p-3 bg-blue-50 rounded-lg border border-blue-200">
+                          <CheckCircle className="h-5 w-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0" />
+                          <span className="text-sm font-medium text-gray-800">{acao}</span>
                         </li>
                       ))}
                     </ul>
+                    {diagnostico.resultado.planoAcao.medio_prazo?.length === 0 && (
+                      <p className="text-sm text-gray-500 italic">Nenhuma ação de médio prazo definida.</p>
+                    )}
                   </CardContent>
                 </Card>
 
-                <Card>
+                {/* Longo Prazo */}
+                <Card className="shadow-lg border-t-4 border-purple-500">
                   <CardHeader>
-                    <CardTitle className="text-purple-600">Longo Prazo</CardTitle>
-                    <CardDescription>Próximos 6-12 meses</CardDescription>
+                    <CardTitle className="text-purple-600 flex items-center">
+                      <TrendingUp className="h-5 w-5 mr-2" />
+                      Longo Prazo
+                    </CardTitle>
+                    <CardDescription>Próximos 6-12 meses - Foco na Escala</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-3">
+                    <ul className="space-y-4">
                       {diagnostico.resultado.planoAcao.longo_prazo?.map((acao, index) => (
-                        <li key={index} className="flex items-start">
-                          <div className="bg-purple-100 rounded-full p-1 mr-3 mt-1">
-                            <Target className="h-3 w-3 text-purple-600" />
-                          </div>
-                          <span className="text-sm text-gray-700">{acao}</span>
+                        <li key={index} className="flex items-start p-3 bg-purple-50 rounded-lg border border-purple-200">
+                          <CheckCircle className="h-5 w-5 text-purple-600 mt-0.5 mr-3 flex-shrink-0" />
+                          <span className="text-sm font-medium text-gray-800">{acao}</span>
                         </li>
                       ))}
                     </ul>
+                    {diagnostico.resultado.planoAcao.longo_prazo?.length === 0 && (
+                      <p className="text-sm text-gray-500 italic">Nenhuma ação de longo prazo definida.</p>
+                    )}
                   </CardContent>
                 </Card>
               </div>
@@ -327,11 +347,19 @@ const Dashboard = () => {
                 <CardContent className="p-8 text-center">
                   <Target className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    Plano de ação não disponível
+                    Plano de Ação Não Gerado
                   </h3>
                   <p className="text-gray-600">
-                    Complete seu diagnóstico para receber um plano de ação personalizado.
+                    Seu diagnóstico está completo, mas o plano de ação não foi gerado automaticamente.
+                    Clique no botão abaixo para gerar um plano de ação personalizado.
                   </p>
+                  <Button 
+                    className="bg-purple-600 hover:bg-purple-700 mt-4"
+                    onClick={handleGerarDiagnostico} // Reutilizando a função de gerar diagnóstico
+                    disabled={gerandoDiagnostico}
+                  >
+                    {gerandoDiagnostico ? 'Gerando Plano...' : 'Gerar Plano de Ação'}
+                  </Button>
                 </CardContent>
               </Card>
             )}
