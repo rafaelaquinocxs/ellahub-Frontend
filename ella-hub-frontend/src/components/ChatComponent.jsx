@@ -27,20 +27,13 @@ const ChatComponent = () => {
     try {
       const response = await ApiService.buscarHistoricoChat(token);
       if (response.success) {
-        const mensagensFormatadas = response.conversas.map(conversa => [
-          {
-            id: `user-${conversa.timestamp}`,
-            tipo: 'usuario',
-            conteudo: conversa.pergunta,
-            timestamp: new Date(conversa.timestamp)
-          },
-          {
-            id: `bot-${conversa.timestamp}`,
-            tipo: 'bot',
-            conteudo: conversa.resposta,
-            timestamp: new Date(conversa.timestamp)
-          }
-        ]).flat();
+        // O backend agora retorna um array plano de mensagens
+        const mensagensFormatadas = response.mensagens.map(msg => ({
+          id: `${msg.tipo}-${msg.timestamp}`,
+          tipo: msg.tipo === 'ella' ? 'bot' : 'usuario', // Mapear 'ella' para 'bot'
+          conteudo: msg.conteudo,
+          timestamp: new Date(msg.timestamp)
+        }));
         
         setMensagens(mensagensFormatadas);
       }
@@ -81,7 +74,7 @@ const ChatComponent = () => {
           id: `bot-${Date.now()}`,
           tipo: 'bot',
           conteudo: response.resposta,
-          timestamp: new Date(response.timestamp)
+          timestamp: new Date() // Gerar timestamp no frontend, pois o backend não retorna
         };
         
         setMensagens(prev => [...prev, mensagemBot]);
