@@ -190,54 +190,59 @@ const Dashboard = () => {
           <TabsContent value="diagnostico" className="space-y-6">
             {diagnostico?.resultado?.pontosFortesIdentificados?.length > 0 || diagnostico?.resultado?.recomendacoes?.length > 0 ? (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <Card>
+                                <Card className="shadow-lg border-t-4 border-green-500">
                   <CardHeader>
-                    <CardTitle className="flex items-center">
-                      <TrendingUp className="h-5 w-5 mr-2 text-green-600" />
+                    <CardTitle className="flex items-center text-green-700">
+                      <TrendingUp className="h-6 w-6 mr-2 text-green-600" />
                       Pontos Fortes
                     </CardTitle>
+                    <CardDescription>O que seu negócio faz de melhor e deve ser alavancado.</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-2">
+                    <ul className="space-y-3">
                       {diagnostico.resultado.pontosFortesIdentificados?.map((ponto, index) => (
-                        <li key={index} className="flex items-start">
-                          <CheckCircle className="h-4 w-4 text-green-600 mt-1 mr-2 flex-shrink-0" />
-                          <span className="text-gray-700">{ponto}</span>
+                        <li key={index} className="flex items-start p-2 bg-green-50 rounded-lg border border-green-200">
+                          <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 mr-3 flex-shrink-0" />
+                          <span className="text-sm font-medium text-gray-800">{ponto}</span>
                         </li>
                       ))}
                     </ul>
                   </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="shadow-lg border-t-4 border-orange-500">
                   <CardHeader>
-                    <CardTitle className="flex items-center">
-                      <Target className="h-5 w-5 mr-2 text-orange-600" />
+                    <CardTitle className="flex items-center text-orange-700">
+                      <Target className="h-6 w-6 mr-2 text-orange-600" />
                       Principais Dificuldades
                     </CardTitle>
+                    <CardDescription>Áreas de risco ou lacunas que precisam de atenção imediata.</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-2">
+                    <ul className="space-y-3">
                       {diagnostico.resultado.principaisDificuldades?.map((dificuldade, index) => (
-                        <li key={index} className="flex items-start">
-                          <Clock className="h-4 w-4 text-orange-600 mt-1 mr-2 flex-shrink-0" />
-                          <span className="text-gray-700">{dificuldade}</span>
+                        <li key={index} className="flex items-start p-2 bg-orange-50 rounded-lg border border-orange-200">
+                          <Clock className="h-5 w-5 text-orange-600 mt-0.5 mr-3 flex-shrink-0" />
+                          <span className="text-sm font-medium text-gray-800">{dificuldade}</span>
                         </li>
                       ))}
                     </ul>
                   </CardContent>
                 </Card>
 
-                <Card className="lg:col-span-2">
+                <Card className="lg:col-span-2 shadow-lg border-t-4 border-purple-500">
                   <CardHeader>
-                    <CardTitle>Recomendações Personalizadas</CardTitle>
+                    <CardTitle className="text-purple-700">
+                      Recomendações Personalizadas
+                    </CardTitle>
+                    <CardDescription>Próximos passos sugeridos para o seu crescimento.</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-3">
                       {diagnostico.resultado.recomendacoes?.map((recomendacao, index) => (
-                        <li key={index} className="flex items-start">
-                          <div className="bg-purple-100 rounded-full p-1 mr-3 mt-1">
-                            <CheckCircle className="h-3 w-3 text-purple-600" />
+                        <li key={index} className="flex items-start p-2 bg-purple-50 rounded-lg border border-purple-200">
+                          <div className="bg-purple-100 rounded-full p-1 mr-3 mt-0.5 flex-shrink-0">
+                            <CheckCircle className="h-4 w-4 text-purple-600" />
                           </div>
                           <span className="text-gray-700">{recomendacao}</span>
                         </li>
