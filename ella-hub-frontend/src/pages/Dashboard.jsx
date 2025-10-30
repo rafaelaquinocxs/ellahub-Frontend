@@ -128,45 +128,52 @@ const Dashboard = () => {
 
         {/* Status Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center">
-                <BarChart3 className="h-8 w-8 text-purple-600" />
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Nível do Negócio</p>
-                  <Badge className={getNivelCor(usuario?.nivelNegocio)}>
-                    {getNivelTexto(usuario?.nivelNegocio)}
-                  </Badge>
-                </div>
+          {/* Card: Nível do Negócio */}
+          <Card className="shadow-md hover:shadow-lg transition-shadow border-l-4 border-purple-500">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium text-gray-500">Nível do Negócio</CardTitle>
+              <BarChart3 className="h-5 w-5 text-purple-500" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold mb-1">
+                {getNivelTexto(diagnostico?.resultado?.nivelNegocio)}
               </div>
+              <p className="text-xs text-gray-500">
+                Fase atual do seu empreendimento
+              </p>
             </CardContent>
           </Card>
 
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center">
-                <CheckCircle className="h-8 w-8 text-green-600" />
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Diagnóstico</p>
-                  <p className="text-lg font-semibold text-gray-900">
-                    {usuario?.diagnosticoCompleto ? 'Completo' : 'Pendente'}
-                  </p>
-                </div>
+          {/* Card: Diagnóstico */}
+          <Card className="shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-500">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium text-gray-500">Status</CardTitle>
+              <CheckCircle className="h-5 w-5 text-green-500" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-green-600 mb-1">
+                Completo
               </div>
+              <p className="text-xs text-gray-500">
+                Análise de 360º realizada
+              </p>
             </CardContent>
           </Card>
 
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center">
-                <TrendingUp className="h-8 w-8 text-blue-600" />
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Score</p>
-                  <p className="text-lg font-semibold text-gray-900">
-                    {diagnostico?.resultado?.score || 0}/100
-                  </p>
-                </div>
+          {/* Card: Score */}
+          <Card className="shadow-md hover:shadow-lg transition-shadow border-l-4 border-blue-500">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium text-gray-500">Score</CardTitle>
+              <TrendingUp className="h-5 w-5 text-blue-500" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-blue-600">
+                {diagnostico?.resultado?.score || 0}/100
               </div>
+              <Progress value={diagnostico?.resultado?.score || 0} className="mt-2 h-2" />
+              <p className="text-xs text-gray-500 mt-1">
+                Sua pontuação de maturidade
+              </p>
             </CardContent>
           </Card>
         </div>
