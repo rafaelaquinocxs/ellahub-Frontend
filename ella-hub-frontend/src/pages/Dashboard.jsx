@@ -189,7 +189,22 @@ const Dashboard = () => {
           {/* Diagnóstico Tab */}
           <TabsContent value="diagnostico" className="space-y-6">
             {diagnostico?.resultado?.pontosFortesIdentificados?.length > 0 || diagnostico?.resultado?.recomendacoes?.length > 0 ? (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="space-y-6">
+                {/* Resumo do Diagnóstico */}
+                <Card className="shadow-lg border-t-4 border-gray-500">
+                  <CardHeader>
+                    <CardTitle className="flex items-center text-gray-700">
+                      <MessageCircle className="h-6 w-6 mr-2 text-gray-600" />
+                      Resumo do Diagnóstico
+                    </CardTitle>
+                    <CardDescription>Uma visão geral da análise do seu negócio.</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-700 whitespace-pre-wrap">{diagnostico?.resultado?.resumoDiagnostico}</p>
+                  </CardContent>
+                </Card>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                                 <Card className="shadow-lg border-t-4 border-green-500">
                   <CardHeader>
                     <CardTitle className="flex items-center text-green-700">
@@ -229,6 +244,7 @@ const Dashboard = () => {
                     </ul>
                   </CardContent>
                 </Card>
+                </div>
 
                 <Card className="lg:col-span-2 shadow-lg border-t-4 border-purple-500">
                   <CardHeader>
