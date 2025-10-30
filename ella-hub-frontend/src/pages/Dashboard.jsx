@@ -297,8 +297,7 @@ const Dashboard = () => {
               diagnostico.resultado.planoAcao.longo_prazo?.length > 0
             ) ? (
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <Card>
-                                  {/* Curto Prazo */}
+                {/* Curto Prazo */}
                 <Card className="shadow-lg border-t-4 border-green-500">
                   <CardHeader>
                     <CardTitle className="text-green-600 flex items-center">
