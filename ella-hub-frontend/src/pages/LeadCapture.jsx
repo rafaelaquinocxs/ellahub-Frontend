@@ -4,7 +4,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
+import { Loader2, ArrowRight } from "lucide-react";
 
 // URL do WhatsApp para redirecionamento
 const WHATSAPP_URL = 'https://wa.me/5554991191879';
@@ -82,79 +82,100 @@ export default function LeadCapture() {
     }
   };
 
-  // Função para formatar o WhatsApp (opcional, mas melhora a UX)
+  // Função para formatar o WhatsApp (simplificada)
   const handleWhatsappFormat = (e) => {
     let value = e.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
-    // Aplica a formatação (ex: (XX) XXXXX-XXXX) - Simplificado para apenas números
     setFormData({ ...formData, whatsapp: value });
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900 p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle className="text-2xl">Diagnóstico Ella Hub</CardTitle>
-          <CardDescription>
-            Preencha o formulário para iniciar seu diagnóstico e ser redirecionado(a) para nosso time no WhatsApp.
-          </CardDescription>
-        </CardHeader>
-        <form onSubmit={handleSubmit}>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="nome">Nome Completo</Label>
-              <Input
-                id="nome"
-                type="text"
-                placeholder="Seu nome"
-                value={formData.nome}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="seu.email@exemplo.com"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="whatsapp">WhatsApp (somente números)</Label>
-              <Input
-                id="whatsapp"
-                type="tel"
-                placeholder="5554991191879"
-                value={formData.whatsapp}
-                onChange={handleWhatsappFormat}
-                required
-              />
-            </div>
-            {error && <p className="text-sm font-medium text-red-500">{error}</p>}
-            {success && <p className="text-sm font-medium text-green-500">{success}</p>}
-          </CardContent>
-          <CardFooter>
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Enviando...
-                </>
-              ) : (
-                'Iniciar Diagnóstico no WhatsApp'
-              )}
-            </Button>
-          </CardFooter>
-        </form>
-        <div className="text-center pb-4">
-            <Button variant="link" onClick={() => navigate('/login')}>
-                Já tenho um token de acesso
-            </Button>
+    <div className="min-h-screen bg-purple-50 flex items-center justify-center p-4">
+      <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center justify-center gap-8 py-12">
+        
+        {/* Coluna da Imagem e Texto */}
+        <div className="md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-purple-700 mb-4">
+            Comece seu Diagnóstico Agora!
+          </h1>
+          <p className="text-xl text-gray-700 mb-6">
+            Preencha o formulário para dar o primeiro passo na sua jornada empreendedora. Após o envio, você será redirecionada para o nosso time no WhatsApp para continuar o diagnóstico.
+          </p>
+          {/* Imagem da Ella (assumindo que o arquivo está acessível) */}
+          <img 
+            src="/ella-hero.png" // Usando o mesmo placeholder da LandingPage.jsx
+            alt="Ella, sua mentora virtual" 
+            className="w-full max-w-sm rounded-lg shadow-2xl mt-4"
+          />
         </div>
-      </Card>
+
+        {/* Coluna do Formulário */}
+        <div className="md:w-1/2 w-full">
+          <Card className="shadow-2xl border-t-4 border-purple-600">
+            <CardHeader className="bg-purple-50/50">
+              <CardTitle className="text-2xl text-purple-700">Dados de Contato</CardTitle>
+              <CardDescription>
+                Precisamos de suas informações para iniciar o diagnóstico e te enviar o resultado.
+              </CardDescription>
+            </CardHeader>
+            <form onSubmit={handleSubmit}>
+              <CardContent className="space-y-4 pt-6">
+                <div className="space-y-2">
+                  <Label htmlFor="nome">Nome Completo</Label>
+                  <Input
+                    id="nome"
+                    type="text"
+                    placeholder="Seu nome"
+                    value={formData.nome}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="seu.email@exemplo.com"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="whatsapp">WhatsApp (somente números)</Label>
+                  <Input
+                    id="whatsapp"
+                    type="tel"
+                    placeholder="5554991191879"
+                    value={formData.whatsapp}
+                    onChange={handleWhatsappFormat}
+                    required
+                  />
+                </div>
+                {error && <p className="text-sm font-medium text-red-500">{error}</p>}
+                {success && <p className="text-sm font-medium text-green-500">{success}</p>}
+              </CardContent>
+              <CardFooter className="flex-col">
+                <Button type="submit" className="w-full bg-purple-600 hover:bg-purple-700 text-white text-lg font-bold transition duration-300" disabled={loading}>
+                  {loading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Enviando...
+                    </>
+                  ) : (
+                    <>
+                      Iniciar Diagnóstico no WhatsApp <ArrowRight className="ml-2 h-5 w-5" />
+                    </>
+                  )}
+                </Button>
+                <Button variant="link" onClick={() => navigate('/login')} className="mt-2 text-purple-600 hover:text-purple-700">
+                    Já tenho um token de acesso
+                </Button>
+              </CardFooter>
+            </form>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 }
