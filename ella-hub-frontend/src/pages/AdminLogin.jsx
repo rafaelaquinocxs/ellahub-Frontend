@@ -116,11 +116,7 @@ const AdminLogin = () => {
                 )}
               </Button>
 
-              <div className="text-center text-xs text-gray-500">
-                <p>Credenciais padrão:</p>
-                <p>Email: admin@ellahub.com</p>
-                <p>Senha: admin123</p>
-              </div>
+
             </form>
           </CardContent>
         </Card>

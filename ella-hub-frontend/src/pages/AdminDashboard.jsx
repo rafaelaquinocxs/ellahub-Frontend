@@ -24,7 +24,9 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [busca, setBusca] = useState('');
   const [paginaLeads, setPaginaLeads] = useState(1);
+  const [totalLeads, setTotalLeads] = useState(0);
   const [paginaDiagnosticos, setPaginaDiagnosticos] = useState(1);
+  const [totalDiagnosticos, setTotalDiagnosticos] = useState(0);
 
   const API_BASE_URL = 'https://ellahub-9f6f69713e4d.herokuapp.com/api';
 
@@ -51,23 +53,25 @@ const AdminDashboard = () => {
       }
 
       // Carregar leads
-      const leadsRes = await fetch(`${API_BASE_URL}/admin-metricas/leads?pagina=${paginaLeads}&limite=10`, {
+      const leadsRes = await fetch(`${API_BASE_URL}/admin-metricas/leads?pagina=${paginaLeads}&limite=1000`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
       if (leadsRes.ok) {
         const data = await leadsRes.json();
         setLeads(data.leads);
+        setTotalLeads(data.paginacao.total);
       }
 
       // Carregar diagnósticos
-      const diagRes = await fetch(`${API_BASE_URL}/admin-metricas/diagnosticos?pagina=${paginaDiagnosticos}&limite=10`, {
+      const diagRes = await fetch(`${API_BASE_URL}/admin-metricas/diagnosticos?pagina=${paginaDiagnosticos}&limite=1000`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
       if (diagRes.ok) {
         const data = await diagRes.json();
         setDiagnosticos(data.diagnosticos);
+        setTotalDiagnosticos(data.paginacao.total);
       }
     } catch (error) {
       console.error('Erro ao carregar dados:', error);
@@ -299,7 +303,7 @@ const AdminDashboard = () => {
           <TabsContent value="leads" className="space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle>Leads Capturados</CardTitle>
+                <CardTitle>Leads Capturados ({totalLeads})</CardTitle>
                 <CardDescription>Todas as pessoas que preencheram o formulário</CardDescription>
               </CardHeader>
               <CardContent>
@@ -347,7 +351,7 @@ const AdminDashboard = () => {
           <TabsContent value="diagnosticos" className="space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle>Diagnósticos Completos</CardTitle>
+                <CardTitle>Diagnósticos Completos ({totalDiagnosticos})</CardTitle>
                 <CardDescription>Todas as análises realizadas</CardDescription>
               </CardHeader>
               <CardContent>
