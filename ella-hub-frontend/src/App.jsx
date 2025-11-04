@@ -8,6 +8,8 @@ import LandingPage from './pages/LandingPage';
 import CriarTeste from './pages/CriarTeste';
 import Dashboard from './pages/Dashboard';
 import Admin from './pages/Admin';
+import AdminLogin from './pages/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard';
 import './App.css';
 
 function App() {
@@ -32,8 +34,10 @@ function App() {
               } 
             />
             
-            {/* Rota administrativa */}
-            <Route path="/admin" element={<Admin />} />
+            {/* Rotas administrativas */}
+            <Route path="/admin-login" element={<AdminLogin />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin-old" element={<Admin />} />
           </Routes>
         </div>
       </Router>
