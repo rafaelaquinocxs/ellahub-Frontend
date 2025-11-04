@@ -14,6 +14,7 @@ import {
   Search,
   ChevronRight
 } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -238,18 +239,27 @@ const AdminDashboard = () => {
                     <CardDescription>Quantidade de diagnósticos por fase</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-4">
-                      {metricas.distribuicaoNivel.map((item, index) => (
-                        <div key={index} className="flex items-center justify-between">
-                          <div className="flex items-center space-x-3">
-                            <Badge className={getNivelCor(item.nivel)}>
-                              {getNivelTexto(item.nivel)}
-                            </Badge>
-                            <span className="text-sm text-gray-600">{item.quantidade} diagnósticos</span>
-                          </div>
-                          <span className="text-sm font-semibold text-gray-900">{item.percentual}</span>
-                        </div>
-                      ))}
+                    <div className="h-80">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <PieChart>
+                          <Pie
+                            data={metricas.distribuicaoNivel.map(item => ({ name: getNivelTexto(item.nivel), value: item.quantidade }))}
+                            dataKey="value"
+                            nameKey="name"
+                            cx="50%"
+                            cy="50%"
+                            outerRadius={80}
+                            fill="#8884d8"
+                            label
+                          >
+                            {metricas.distribuicaoNivel.map((entry, index) => (
+                              <Cell key={`cell-${index}`} fill={['#facc15', '#3b82f6', '#10b981', '#9333ea', '#4f46e5'][index % 5]} />
+                            ))}
+                          </Pie>
+                          <Tooltip formatter={(value, name, props) => [`${value} (${props.payload.percentual})`, name]} />
+                          <Legend />
+                        </PieChart>
+                      </ResponsiveContainer>
                     </div>
                   </CardContent>
                 </Card>
@@ -261,16 +271,21 @@ const AdminDashboard = () => {
                     <CardDescription>Principais desafios identificados</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-3">
-                      {metricas.dificuldadesMaisCitadas.map((item, index) => (
-                        <div key={index} className="flex items-center justify-between p-3 bg-orange-50 rounded-lg border border-orange-200">
-                          <div>
-                            <p className="text-sm font-medium text-gray-900">{index + 1}. {item.dificuldade}</p>
-                            <p className="text-xs text-gray-600">{item.frequencia} menções</p>
-                          </div>
-                          <Badge variant="outline">{item.percentual}</Badge>
-                        </div>
-                      ))}
+                    <div className="h-80">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <BarChart
+                          data={metricas.dificuldadesMaisCitadas.map(item => ({ name: item.dificuldade, Frequência: item.frequencia }))}
+                          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                          layout="vertical"
+                        >
+                          <CartesianGrid strokeDasharray="3 3" />
+                          <XAxis type="number" />
+                          <YAxis type="category" dataKey="name" width={150} />
+                          <Tooltip />
+                          <Legend />
+                          <Bar dataKey="Frequência" fill="#f97316" />
+                        </BarChart>
+                      </ResponsiveContainer>
                     </div>
                   </CardContent>
                 </Card>
@@ -282,16 +297,21 @@ const AdminDashboard = () => {
                     <CardDescription>Principais forças identificadas</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-3">
-                      {metricas.pontosForteMaisCitados.map((item, index) => (
-                        <div key={index} className="flex items-center justify-between p-3 bg-green-50 rounded-lg border border-green-200">
-                          <div>
-                            <p className="text-sm font-medium text-gray-900">{index + 1}. {item.ponto}</p>
-                            <p className="text-xs text-gray-600">{item.frequencia} menções</p>
-                          </div>
-                          <Badge variant="outline">{item.percentual}</Badge>
-                        </div>
-                      ))}
+                    <div className="h-80">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <BarChart
+                          data={metricas.pontosForteMaisCitados.map(item => ({ name: item.ponto, Frequência: item.frequencia }))}
+                          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                          layout="vertical"
+                        >
+                          <CartesianGrid strokeDasharray="3 3" />
+                          <XAxis type="number" />
+                          <YAxis type="category" dataKey="name" width={150} />
+                          <Tooltip />
+                          <Legend />
+                          <Bar dataKey="Frequência" fill="#10b981" />
+                        </BarChart>
+                      </ResponsiveContainer>
                     </div>
                   </CardContent>
                 </Card>

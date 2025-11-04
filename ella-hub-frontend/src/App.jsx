@@ -10,6 +10,7 @@ import Dashboard from './pages/Dashboard';
 import Admin from './pages/Admin';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
+import AdminDiagnosticoDetalhe from './pages/AdminDiagnosticoDetalhe';
 import './App.css';
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
             {/* Rotas administrativas */}
             <Route path="/admin-login" element={<AdminLogin />} />
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/diagnostico/:id" element={<AdminDiagnosticoDetalhe />} />
             <Route path="/admin-old" element={<Admin />} />
           </Routes>
         </div>
