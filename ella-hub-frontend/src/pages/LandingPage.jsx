@@ -51,7 +51,7 @@ const LandingPage = () => {
             </p>
             <Button 
               size="lg" 
-              className="bg-pink-400 hover:bg-pink-500 text-white text-lg font-bold transition duration-300"
+              className="bg-green-500 hover:bg-green-600 text-white text-lg font-bold transition duration-300"
               onClick={() => navigate('/lead-capture')}
             >
               Quero fazer meu diagnóstico <ArrowRight className="ml-2 h-5 w-5" />
@@ -129,7 +129,7 @@ const LandingPage = () => {
           </p>
           <Button 
             size="lg" 
-            className="bg-purple-600 hover:bg-purple-700 text-white text-xl font-bold py-3 px-8 transition duration-300"
+            className="bg-green-500 hover:bg-green-600 text-white text-xl font-bold py-3 px-8 transition duration-300"
             onClick={scrollToForm}
           >
             ✨ Quero fazer meu diagnóstico <Zap className="ml-2 h-5 w-5" />
